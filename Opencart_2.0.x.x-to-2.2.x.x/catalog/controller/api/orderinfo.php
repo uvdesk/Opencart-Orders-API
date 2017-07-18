@@ -1,6 +1,6 @@
 <?php
 class ControllerApiOrderinfo extends Controller {
-	
+
 	public function info() {
 		$this->load->language('api/order');
 
@@ -18,6 +18,10 @@ class ControllerApiOrderinfo extends Controller {
 			}
 
 			$json = $this->model_checkout_order->getOrder($order_id);
+
+			$this->load->model('account/order');
+
+			$json['products'] = $this->model_account_order->getOrderProducts($order_id);
 
 			if (!$json) {
 				$json['error'] = $this->language->get('error_not_found');
