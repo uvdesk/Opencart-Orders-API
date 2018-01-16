@@ -23,6 +23,12 @@ class ControllerApiOrderinfo extends Controller {
 
 			$json['products'] = $this->model_account_order->getOrderProducts($order_id);
 
+			if ($json['products']) {
+				foreach ($json['products'] as $key => $product) {
+						$json['products'][$key]['url'] = html_entity_decode($this->url->link('product/product', 'product_id=' . $product['product_id'], true));
+				}
+			}
+
 			if (!$json) {
 				$json['error'] = $this->language->get('error_not_found');
 			}

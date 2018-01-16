@@ -6,7 +6,7 @@ class ControllerApiOrderinfo extends Controller {
 
 		$json = array();
 
-		if (!$this->config->get('wkocuvdesk_status') || !isset($this->request->post['api_key']) || $this->request->post['api_key'] != $this->config->get('wkocuvdesk_api_key') || !isset($this->request->post['api_password']) || $this->request->post['api_password'] != $this->config->get('wkocuvdesk_api_password')) {
+		if (!$this->config->get('module_wkocuvdesk_status') || !isset($this->request->post['api_key']) || $this->request->post['api_key'] != $this->config->get('module_wkocuvdesk_api_key') || !isset($this->request->post['api_password']) || $this->request->post['api_password'] != $this->config->get('module_wkocuvdesk_api_password')) {
 			$json['error'] = $this->language->get('error_permission');
 		} else {
 			$this->load->model('checkout/order');
